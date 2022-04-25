@@ -25,9 +25,9 @@ public class ITCStore_POM
 	{
 	    driver.findElement(By.xpath("//*[@id=\"index\"]/div[2]/div/div[2]/div/div/div[1]/div/div")).click();
 	}
-	public void email(WebDriver driver, String email)
+	public void userName(WebDriver driver, String usn)
 	{
-	    driver.findElement(By.xpath("//*[@id=\"customer_email\"]")).sendKeys(email);
+	    driver.findElement(By.xpath("//*[@id=\"customer_email\"]")).sendKeys(usn);
 	}
 	public void passWord(WebDriver driver, String pwd)
 	{
@@ -37,9 +37,13 @@ public class ITCStore_POM
 	{
 		driver.findElement(By.xpath("//*[@id=\"login_submit_btn\"]")).click();
 	}
-	public void logoutAccount(WebDriver driver)
+	public void module(WebDriver driver)
 	{
-		driver.findElement(By.xpath("//*[@id=\"shopify-section-header-supermarket\"]/header/div/div/div[2]/div/div/div/div[3]/div/div[1]/div/div[2]")).click();
+		driver.findElement(By.xpath("//*[@id=\"sticky-wrapper\"]/div/div[2]/div/div/div/div/nav/ul[1]/li[8]/a")).click();
+	}
+	public void Account(WebDriver driver)
+	{
+		driver.findElement(By.xpath("//*[@id=\"shopify-section-header-supermarket\"]/header/div/div/div[2]/div/div/div/div[3]/div/div[1]/div/div[2]/a")).click();
 	}
 	public void logOut(WebDriver driver)
 	{

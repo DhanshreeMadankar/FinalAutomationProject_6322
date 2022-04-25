@@ -1,87 +1,74 @@
 package ITCStore_Project;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.annotations.Test;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.BeforeTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterTest;
 
-
-
-public class ITCStore_DDT 
+public class ITCStore_DDT
 {
+  WebDriver driver;
+  @BeforeTest
+   public void beforeTest() throws Exception 
+  {
+	  System.setProperty("webdriver.chrome.driver","C:\\Users\\HP\\Documents\\Automation testing\\Browser Extension\\chromedriver.exe");
+	  driver = new ChromeDriver();
+	  Thread.sleep(2000);
 
-	public static void main(String[] args) throws Exception 
-	{
-		 
-			//Part 1: ExcelSheet ---> Store Test Data in form of variables
-			  FileInputStream file=new FileInputStream("C:\\Users\\HP\\Documents\\Automation testing\\POI.xlsx");
-			  XSSFWorkbook w=new XSSFWorkbook(file);
-			  XSSFSheet s=w.getSheet("DataDrivenFrameworkITCStore");
-			
-			  int rowSize=s.getLastRowNum();
-			  System.out.println("No. Username & Password: "+rowSize);
-
-				System.setProperty("webdriver.chrome.driver","C:\\Users\\HP\\Documents\\Automation testing\\Browser Extension\\chromedriver.exe");
-				WebDriver driver=new ChromeDriver();
+	  // Maximize Browser
+	  driver.manage().window().maximize();
+		
+  }
+  
+	@Test(dataProvider = "LoginData")
+  public void f(String  username, String password) throws Exception
+	{ 
+		ITCStore_POM  o= new ITCStore_POM();
+	
+		//Create Object Of POM Class
+				
+				o.maximizeBrowser(driver);
+				o.url(driver);
+				o.window(driver);
+				o.myAccount(driver);
 				Thread.sleep(2000);
-			  
-			  //Maximize Browser
-		      driver.manage().window().maximize();
-					
-			  //Create Object of POM
-		      ITCStore_POM  o=new ITCStore_POM();
-					
+				o.login(driver);
+				Thread.sleep(2000);
+			    o.userName(driver,username );
+				o.passWord(driver,password);
+				Thread.sleep(2000);
+				o.loginButton(driver);
+				Thread.sleep(2000);
+				o.module(driver);
+				Thread.sleep(2000);
+				o.Account(driver);
+				Thread.sleep(2000);
 				
-					for(int i=1; i<=rowSize; i++)
-					{
-						
-						String email=s.getRow(i).getCell(0).getStringCellValue();
-						String Password=s.getRow(i).getCell(1).getStringCellValue();
-						System.out.println(email+"\t\t"+Password);
-						
-						//Part 2: Launch Application
-						try
-						{
-							o.maximizeBrowser(driver);
-							o.url(driver);
-							o.window(driver);
-							o.myAccount(driver);
-							o.login(driver);
-							o.email(driver, "saurabhd3552@gmail.com");
-							o.passWord(driver, "Saurabh@3552");
-							o.loginButton(driver);
-							
-							o.logoutAccount(driver);
-							Thread.sleep(2000);
-							
-							o.logOut(driver);
-							o.closeBrowser(driver);	
-						
-							
-							//Part 3: Update Result
-							System.out.println("Valid Username & Password.");
-							System.out.println("");
-							s.getRow(i).createCell(2).setCellValue("Valid Username & Password.");
-						}
-						catch (Exception e)
-						{
-							System.out.println("Invalid Username & Password.");
-							System.out.println("");
-							s.getRow(i).createCell(2).setCellValue("Invalid Username & Password.");
-						}
-				
-					}
-					
-					FileOutputStream out=new FileOutputStream("C:\\Users\\HP\\Documents\\Automation testing\\POI.xlsx");
-					w.write(out);
-					w.close();
-					
-					
+				o.logOut(driver);
+				o.closeBrowser(driver);	
 	}
+	
 
+  @DataProvider (name="LoginData")
+  public Object[][] getData()
+  {
+      String loginData[][]={   
+    		                  { "saurabhd3552@gmail.com", "Saurabh@3552" },
+  		                      { "Demo@1234", "Demo1" },
+                            
+                           };
+   
+      return loginData;
+    };
+    
+  
+  
+  @AfterTest
+  public void afterTest()
+ {
+ 	driver.close();
+ }
 }

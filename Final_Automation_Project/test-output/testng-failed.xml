@@ -3,16 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="ITCStore_Project.ITCStore_Login">
+      <class name="ITCStore_Project.ITCStore_DDT">
         <methods>
-          <include name="modules1"/>
-          <include name="modules3"/>
-          <include name="modules2"/>
-          <include name="afterTest"/>
-          <include name="modules5"/>
           <include name="beforeTest"/>
+          <include name="f" invocation-numbers="1"/>
+          <include name="afterTest"/>
         </methods>
-      </class> <!-- ITCStore_Project.ITCStore_Login -->
+      </class> <!-- ITCStore_Project.ITCStore_DDT -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

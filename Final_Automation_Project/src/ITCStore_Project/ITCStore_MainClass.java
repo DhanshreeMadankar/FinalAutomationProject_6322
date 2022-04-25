@@ -19,11 +19,12 @@ public class ITCStore_MainClass
 		o.window(driver);
 		o.myAccount(driver);
 		o.login(driver);
-		o.email(driver, "saurabhd3552@gmail.com");
-		o.passWord(driver, "Saurabh@3552");
+	    o.userName(driver,"saurabhd3552@gmail.com" );
+		o.passWord(driver,"Saurabh@3552" );
 		o.loginButton(driver);
-		
-		o.logoutAccount(driver);
+		o.module(driver);
+		Thread.sleep(2000);
+		o.Account(driver);
 		Thread.sleep(2000);
 		
 		o.logOut(driver);

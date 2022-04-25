@@ -5,9 +5,7 @@ import org.testng.annotations.BeforeTest;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -15,65 +13,33 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.testng.annotations.AfterTest;
 import org.openqa.selenium.io.FileHandler;
+import org.testng.annotations.AfterTest;
 
-public class ITCStore_Login {
+public class ITCStore_Modules 
+{
 	WebDriver driver;
+  @BeforeTest
+  public void beforeTest() throws Exception 
+  {
+	  System.setProperty("webdriver.chrome.driver","C:\\Users\\HP\\Documents\\Automation testing\\Browser Extension\\chromedriver.exe");
+	  driver = new ChromeDriver();
+	  Thread.sleep(2000);
 
-	@BeforeTest
-	public void beforeTest() throws Exception 
-	{
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\HP\\Documents\\Automation testing\\Browser Extension\\chromedriver.exe");
-		driver = new ChromeDriver();
-		Thread.sleep(2000);
+	  // Maximize Browser
+	  driver.manage().window().maximize();
 
-		// Maximize Browser
-		driver.manage().window().maximize();
-
-	}
-
-	@Test (priority=1)
-	public void login() throws Exception
-	{
-		// URL
-		driver.get("https://itcstore.in/");
-		Thread.sleep(2000);
-
-		// Window
-		driver.findElement(By.xpath("//*[@id=\"zip-skip\"]")).click();
-		Thread.sleep(2000);
-
-		// My Account
-		driver.findElement(By.xpath("//*[@id=\"customer_register_link\"]")).click();
-		Thread.sleep(2000);
-
-		// Log In
-		driver.findElement(By.xpath("//*[@id=\"index\"]/div[2]/div/div[2]/div/div/div[1]/div/div")).click();
-		Thread.sleep(2000);
-
-		// Email ID
-		driver.findElement(By.xpath("//*[@id=\"customer_email\"]")).sendKeys("saurabhd3552@gmail.com");
-		Thread.sleep(2000);
-
-		// Password
-     	driver.findElement(By.xpath("//*[@id=\"customer_password\"]")).sendKeys("Saurabh@3552");
-		Thread.sleep(2000);
-
-		// Login
-		driver.findElement(By.xpath("//*[@id=\"login_submit_btn\"]")).click();
-		Thread.sleep(2000);
-	}
-	
-
-	@Test (priority=2)
+  }
+  
+  @Test (priority=1)
 	public void modules1() throws Exception
 	{
 	    
 	  //(MODULE-1)
+	       // URL
+	      driver.get("https://itcstore.in/");
+	      Thread.sleep(2000);
 		  
 		  // Window
 		  driver.findElement(By.xpath("//*[@id=\"pincode\"]")).sendKeys("440030");
@@ -83,10 +49,10 @@ public class ITCStore_Login {
 		  Thread.sleep(2000);
 	}
 	
-	@Test (priority=3)
+	@Test (priority=2)
 	public void modules2() throws Exception
 	{
-		  
+	   //As this is a live website and product is changing contineously, so as products get changed xpath is also changing.  
 	  //(MODULE-2)
 		  // Home Page
 		 driver.findElement(By.xpath("//*[@id=\"sticky-wrapper\"]/div/div[2]/div/div/div/div/nav/ul[1]/li[1]/a")).click();	
@@ -129,11 +95,11 @@ public class ITCStore_Login {
 		  Thread.sleep(2000);
 	}
 	
-	@Test (priority=4)
+	@Test (priority=3)
 	public void modules3() throws Exception
 	{
 		  
-     //(MODULE-3)
+   //(MODULE-3)
 		  //(FOODS)
 		  driver.findElement(By.xpath("//*[@id=\"sticky-wrapper\"]/div/div[2]/div/div/div/div/nav/ul[1]/li[2]/a")).click();
 		  Thread.sleep(2000);
@@ -165,10 +131,11 @@ public class ITCStore_Login {
 		  driver.findElement(By.xpath("//*[@id=\"grid-product-form-6609600151606\"]/button")).click();
 		  Thread.sleep(2000);
 		  
-		  //Click on image
-		  driver.findElement(By.xpath("//*[@id=\"ProductSection-product-template-default\"]/div[2]/div[1]/div[1]/div/div[2]/div/div/div[5]/a/img")).click();
+		  //Click on Product body
+		  driver.findElement(By.xpath("//*[@id=\"product-6609600151606\"]/div/div[1]/div[1]/a/span/img")).click();
 		  Thread.sleep(2000);
 		  
+		  //Click on image
 		  driver.findElement(By.xpath("//*[@id=\"ProductSection-product-template-default\"]/div[2]/div[1]/div[1]/div/div[2]/div/div/div[6]/a/img")).click();
 		  Thread.sleep(2000);
 		  
@@ -184,6 +151,9 @@ public class ITCStore_Login {
 		  driver.findElement(By.xpath("//*[@id=\"ProductSection-product-template-default\"]/div[2]/div[1]/div[1]/div/div[2]/div/div/div[10]/a/img")).click();
 		  Thread.sleep(2000);
 		  
+		  driver.findElement(By.xpath("//*[@id=\"ProductSection-product-template-default\"]/div[2]/div[1]/div[1]/div/div[2]/div/div/div[11]/a/img")).click();
+		  Thread.sleep(2000);
+		  
 		  //Check Add to Cart
 		  driver.findElement(By.xpath("//*[@id=\"shopify-section-header-supermarket\"]/header/div/div/div[2]/div/div/div/div[3]/div/div[2]")).click();
 		  Thread.sleep(2000);
@@ -193,7 +163,7 @@ public class ITCStore_Login {
 		  Thread.sleep(2000);
 	}
 	
-	@Test (priority=5)
+	@Test (priority=4)
 	public void modules4() throws Exception
 	{
 		  
@@ -255,10 +225,10 @@ public class ITCStore_Login {
 		  Thread.sleep(2000);
 	}
 	
-	@Test (priority=6)
+	@Test (priority=5)
 	public void modules5() throws Exception
 	{
-     //(MODULE-5)
+   //(MODULE-5)
 	      //Search Box
 	      driver.findElement(By.xpath("//*[@id=\"st-searchbox\"]/div/div[1]/div/div/div/input[4]")).sendKeys("Engage Lamante Perfumes");
 		  Thread.sleep(2000);
@@ -266,9 +236,9 @@ public class ITCStore_Login {
 		  //Search Button
 		  driver.findElement(By.xpath("//*[@id=\"st-searchbox\"]/div/div[1]/div/div/div/button")).sendKeys(Keys.ENTER);
 		  Thread.sleep(2000);
-		  
+		 		  
 		  //Product add to cart
-		  driver.findElement(By.xpath("//*[@id=\"grid-product-form-6609599070262\"]/button")).click();
+		  driver.findElement(By.xpath("//*[@id=\"grid-product-form-6609599004726\"]/button")).click();
 		  Thread.sleep(2000);
 		  
 		  //Add to Cart
@@ -276,7 +246,7 @@ public class ITCStore_Login {
 		  Thread.sleep(2000);
 		  
 		  //Proceed To Checkout
-   	      driver.findElement(By.xpath("//*[@id=\"dropdown-cart\"]/div[3]/div/div[4]")).click();
+ 	      driver.findElement(By.xpath("//*[@id=\"dropdown-cart\"]/div[3]/div/div[4]")).click();
 		  Thread.sleep(2000);
 		  
 		  //Add Delivery Date
@@ -285,17 +255,19 @@ public class ITCStore_Login {
 		  
 		  //Date has a frequently change as per the order so its some times shows the error
 		  //Date
-		  driver.findElement(By.xpath("//*[@id=\"your-shopping-cart\"]/div[18]/div[1]/table/tbody/tr[5]/td[3]")).click();
+		  driver.findElement(By.xpath("//*[@id=\"your-shopping-cart\"]/div[18]/div[1]/table/tbody/tr[5]/td[7]")).click();
 		  Thread.sleep(2000);
 		  
 		  //Again Proceed To Checkout
 		  driver.findElement(By.name("checkout")).click();
 		  Thread.sleep(2000);
 		  
-
+		  //Comment :- As I have completed again proceed tom checkout flow after that their is payment flow. So as its a payment 
+//		               flow so i will be not doing the same. 
+		      
 	}
 	
-	@Test (priority=7)
+	@Test (priority=6)
 	public void Screenshotpersonalcare() throws Exception	
 	 {
 		//Personal Care
@@ -308,9 +280,9 @@ public class ITCStore_Login {
 	    FileHandler.copy(src, new File(".\\Personalcare.png"));
 	    Thread.sleep(2000);
 	    
-     }
+   }
 	
-	@Test (priority=8)
+	@Test (priority=7)
 	public void ScreenshotCleaningandHousehold() throws Exception	
 	 {
 		//Cleaning And Household
@@ -323,9 +295,9 @@ public class ITCStore_Login {
 	    FileHandler.copy(src, new File(".\\CleaningAndHousehold.png"));
 	    Thread.sleep(2000);
 	    
-     }
+   }
 	
-	@Test (priority=9)
+	@Test (priority=8)
 	public void ScreenshotStationary() throws Exception	
 	 {
 		//Stationary
@@ -338,9 +310,9 @@ public class ITCStore_Login {
 	    FileHandler.copy(src, new File(".\\Stationary.png"));
 	    Thread.sleep(2000);
 	    
-     }
+   }
 	
-	@Test (priority=10)
+	@Test (priority=9)
 	public void ScreenshotNewLaunch() throws Exception	
 	 {
 		//New Launch
@@ -353,9 +325,9 @@ public class ITCStore_Login {
 	    FileHandler.copy(src, new File(".\\NewLaunch.png"));
 	    Thread.sleep(2000);
 	    
-     }
+   }
 	
-	@Test (priority=11)
+	@Test (priority=10)
 	public void ScreenshotMagicBox() throws Exception	
 	 {
 		//Magic Box
@@ -368,27 +340,11 @@ public class ITCStore_Login {
 	    FileHandler.copy(src, new File(".\\MagicBox.png"));
 	    Thread.sleep(2000);
 	    
-     }
-	
-	@Test (priority=12)
-	public void logout() throws Exception
-	{
-		  
-
-		// Logout Account
-		driver.findElement(By.xpath("//*[@id=\"shopify-section-header-supermarket\"]/header/div/div/div[2]/div/div/div/div[3]/div/div[1]/div/div[2]")).click();
-		Thread.sleep(2000);
-
-		// Logout
-		driver.findElement(By.xpath("//*[@id=\"customer_logout_link\"]")).click();
-		Thread.sleep(2000);
-
-	}
-
-	@AfterTest
-	public void afterTest()
-	{
+   }
+  @AfterTest
+  public void afterTest() 
+  {
 		driver.close();
-	}
+  }
 
 }
